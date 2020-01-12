@@ -14,13 +14,40 @@
 ---
 
 ### Functional vs Class Components
-* Class - stateful, lifecycle, 
+So far
+
+| Class                 | Function      |
+| -------------         |:-------------:|
+| Stateful              | Stateless     |
+| Lifecycle events      | X             |
+| Complex               | Simple        |
+
+---
+
+### Functional vs Class Components
+And there is...
+
+    <div>
+        <img src="./assets/this.gif">
+    </div>
+    <!-- .element: class="fragment" -->
+
 
 ---
 
 ### React Hooks introduction
-* useState
-* useEffect
+[Motivation:](https://reactjs.org/docs/hooks-intro.html)
+>* It’s hard to reuse stateful logic between components
+>* Complex components become hard to understand
+>* Classes confuse both people and machines (this) 
+
+---
+
+### React Hooks introduction
+* [Hooks Overview](https://reactjs.org/docs/hooks-overview.html)
+* [State hook](https://reactjs.org/docs/hooks-state.html)
+* [Effect hook](https://reactjs.org/docs/hooks-effect.html)
+* Live Demo
 
 ---
 

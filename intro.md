@@ -27,9 +27,12 @@
 
 ### The Learning System
 * Reversed classroom - class prep
-* lecture vs practice - 20/40 ratio
+* Lecture vs Practice - 20/40 ratio (hopefully)
 * Class and Home practice (optional) 
-* Further reading
+* Material
+    * Official documentation
+    * Conventions and Posts
+    * Further reading & Extra
 * Tools
     * Slides - reveal-md
     * Code - git with ordered branches
