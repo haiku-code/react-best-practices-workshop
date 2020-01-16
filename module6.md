@@ -2,17 +2,37 @@
 ### CSS in JS
 (This document is optimized for presentation using [reveal-md](https://github.com/webpro/reveal-md))
 
+### Goals
+* Understand the motivation for CSS in JS
+* Practice CSS in JS
+
 ---
 
 ### Agenda
-1. CSS in JS motivation and tradeoffs
-2. Tools overview
-3. MaterialUI styling system
+1. Why and How? 
+2. Comparing to CSS
+3. Tools Overview
+4. Material-UI styling system
 
 ---
 
-### A
+### Why and How? 
 
+---
+
+### Comparing to CSS 
+
+---
+
+### Tools Overview
+
+---
+
+### MaterialUI styling system
+
+---
+
+### Wrap Up
 
 ---
 

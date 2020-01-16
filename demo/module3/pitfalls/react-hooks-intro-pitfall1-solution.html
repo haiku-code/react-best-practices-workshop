@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Hooks Intro</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+    <style>
+        body {
+            padding: 40px;
+            text-align: center;
+            font: normal normal bold 50px sans-serif;
+        }
+
+        button {
+            font: normal normal bold 50px sans-serif;
+            padding: 20px;
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            background-color: rgb(46, 70, 221);
+            text-decoration: none;
+            border: transparent;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    'use strict';
+    const useState = React.useState;
+    const useEffect = React.useEffect;
+    const useRef = React.useRef;
+    const useCallback = React.useCallback;
+
+    // Bugs reconstruction:
+    // 1. Click 5 times on the button and 1 on i
+    // 2. What is the problem with extracting increaseByKey function outside of useEffect?
+
+
+    function Header({number}) {
+        return (
+            <header>
+                <p>Click the button or press <b>i</b> (increase)</p>
+                <p>{number} times</p>
+            </header>
+        );
+    }
+
+
+    function App() {
+        const [counter, setCounter] = useState(0) ;
+        // #1: useRef
+        const counterRef = useRef(0);
+
+        useEffect(() => {
+            window.addEventListener('keypress', increaseByKey);
+            return () => {
+                window.removeEventListener('keypress', increaseByKey)
+            }
+        }, []);
+
+        // #2: useCallback
+        const increaseByKey = useCallback((event) => {
+            if (event.key === 'i') {
+                increaseCounter();
+            }
+        }, []);
+
+        const increaseCounter = useCallback(() => {
+            counterRef.current = counterRef.current  + 1;
+            setCounter(counterRef.current);
+        }, []);
+
+        return (
+            <main>
+                <Header number={counter}/>
+                <button onClick={increaseCounter}>
+                    Click Me!
+                </button>
+            </main>
+        );
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>

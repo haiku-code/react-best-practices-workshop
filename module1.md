@@ -2,8 +2,9 @@
 ### Common Design Patterns
 (This document is optimized for presentation using [reveal-md](https://github.com/webpro/reveal-md))
 
-### Goal
-Get familiar with common design patterns in React and when should you apply them. 
+### Goals
+* Get familiar with common design patterns in React
+* Understand the motivation and when should you apply them
 
 ---
 
@@ -25,7 +26,7 @@ Get familiar with common design patterns in React and when should you apply them
 Simply put, its is a function that takes a component and returns a new component.
 <!-- .element: class="fragment" -->
 
-And remember, component is (mostly a) function. 
+Remember, component is (mostly a) function. 
 <!-- .element: class="fragment" -->
 
 ---
@@ -76,8 +77,8 @@ A design pattern of separate complex logic from other aspects a component. Other
 * smart and dumb components
 * Container and View components
 
-Note: there are other technic to achieve this goals, like [hooks](https://reactjs.org/docs/hooks-custom.html).
-Make sure not to enforce this technic without necessity.
+Note: there are other technique to achieve this goals, like [hooks](https://reactjs.org/docs/hooks-custom.html).
+Make sure not to enforce this technique without necessity.
 <!-- .element: class="fragment" -->
 
 ---
@@ -123,7 +124,7 @@ Pitfalls:
 ---
 
 ### [Component Index](https://alligator.io/react/index-js-public-interfaces/)
-
+It's a technique rather than Design Pattern (not React specific)
 ```
 // atoms/index.js
 export {default as Button} from './Button';
@@ -246,7 +247,7 @@ The problem - UI may freeze / stuck / etc - because:
 ---
 
 ### [Lazy loading and Suspense](https://reactjs.org/docs/concurrent-mode-suspense.html)
-The (React) solution:  Concurrent Mode
+The (React) solution: Concurrent Mode
 
 > Concurrent Mode is a **set of new features** that help React apps stay responsive and gracefully adjust to the user’s device capabilities and network speed
 
@@ -267,7 +268,107 @@ Pitfalls:
 ---
 
 ### Controlled / Uncontrolled Components
+Question: What's the problem with forms elements in React (input, textarea, and select) in React?
+<!-- .element: class="fragment" -->
 
+Answer: they already have some sort of "state"
+<!-- .element: class="fragment" -->
+
+Example: when we type inside an input we change it's value
+<!-- .element: class="fragment" -->
+
+There are two ways to treat this "internal state"
+<!-- .element: class="fragment" -->
+* Manage it - Force them to behave like any other component ([Controlled Components](https://reactjs.org/docs/forms.html#controlled-components))
+<!-- .element: class="fragment" -->
+* Leave it - Keep the default behaviour ([Uncontrolled Components](https://reactjs.org/docs/uncontrolled-components.html))
+<!-- .element: class="fragment" -->
+
+---
+
+### Controlled / Uncontrolled Components
+The common way to use form elements in React is using [Controlled Components](https://reactjs.org/docs/forms.html#controlled-components).
+```jsx harmony
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+  }
+
+  handleChange = (event) => {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    props.doStuff(this.state.value);
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+```
+
+---
+
+### Controlled / Uncontrolled Components
+The alternative is [uncontrolled components](https://codepen.io/gaearon/pen/WooRWa?editors=0010), where form data is handled by the DOM itself.
+```jsx harmony
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.input = React.createRef();
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault(this.input.current.value);
+    props.doStuff();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" ref={this.input} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+```
+
+---
+
+### Controlled / Uncontrolled Components
+
+Notice the [usage of Ref](https://reactjs.org/docs/refs-and-the-dom.html).
+> Refs provide a way to access DOM nodes or React elements created in the render method
+* Access the DOME node using `current` property.
+* `current` property will be assigned by React (using`ref` prop) 
+* Ref will be create once and live until component unmount (like state)
+* Ref can be [forwarded](https://reactjs.org/docs/forwarding-refs.html)
+```jsx harmony
+// use forwardRef HOC
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+```
 ---
 
 ### Practice 3
@@ -275,17 +376,37 @@ Pitfalls:
 ---
 
 ### Some more patterns
+[Forwarding Refs](https://reactjs.org/docs/forwarding-refs.html)
+[Fragments](https://reactjs.org/docs/fragments.html)
+[React.PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
+[React.memo](https://reactjs.org/docs/hooks-reference.html#usememo)
+[Portals](https://reactjs.org/docs/portals.html)
+[Error Boundaries](https://reactjs.org/docs/error-boundaries.html)
+[Context](https://reactjs.org/docs/context.html)
 
-https://reactjs.org/docs/react-api.html#reactpurecomponent
-https://reactjs.org/docs/refs-and-the-dom.html
-https://reactjs.org/docs/forwarding-refs.html
-https://reactjs.org/docs/hooks-reference.html#usememo
-https://dev.to/dinhhuyams/introduction-to-react-memo-usememo-and-usecallback-5ei3
-https://reactjs.org/docs/fragments.html
-https://reactjs.org/docs/portals.html
-https://reactjs.org/docs/error-boundaries.html
-https://reactjs.org/docs/context.html
-React.memo
+---
+
+### Wrap Up
+Design Patterns are general repeatable solution to common problems in software design
+
+Let's go over the problems and solutions we have covered
+
+Reusing component logic
+* HOC
+* Logical / View component separation
+
+Reusing Component view
+* Logical / View component separation
+* Composition
+
+Large app with lots of code
+* Code splitting and lazy loading
+
+Default element behavior ir preferable  
+* Uncontrolled Components
+
+DOM element access required 
+* Using `ref`
 
 ---
 

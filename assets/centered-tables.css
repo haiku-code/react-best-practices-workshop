@@ -1,0 +1,15 @@
+.reveal table th {
+    text-align: center;
+    border: 1px solid;
+}
+
+.reveal table tbody tr:last-child td {
+    border-bottom: 1px solid;
+}
+.reveal table td {
+    text-align: center;
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid;;
+    border-right: 1px solid;;
+}

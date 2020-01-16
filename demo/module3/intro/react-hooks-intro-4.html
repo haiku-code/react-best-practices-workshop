@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Hooks Intro</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+    <style>
+        body {
+            padding: 40px;
+            text-align: center;
+            font: normal normal bold 50px sans-serif;
+        }
+
+        button {
+            font: normal normal bold 50px sans-serif;
+            padding: 20px;
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            background-color: rgb(46, 70, 221);
+            text-decoration: none;
+            border: transparent;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    'use strict';
+    const useState = React.useState;
+    const useEffect = React.useEffect;
+
+    // Steps:
+    // 1. Convert App to functional component (Done)
+    // 2. Convert state to useState hook (Done)
+    // 3. Modify increaseCounter to use hook's setState
+    // 4. Convert componentDidMount and componentWillUnmount to useEffect
+
+
+    function Header({number}) {
+        return (
+            <header>
+                <p>Click the button or press <b>c</b> (clear)</p>
+                <p>{number} times</p>
+            </header>
+        );
+    }
+
+
+    function App() {
+        const [counter, setCounter] = useState(0) ;
+
+        useEffect(() => {
+            window.addEventListener('keypress', clear);
+            return () => {
+                window.removeEventListener('keypress', clear)
+            }
+        }, []);
+
+        function clear(event) {
+            if (event.key === 'c') {
+                setCounter(0);
+            }
+        }
+
+        function increaseCounter() {
+            setCounter(counter + 1);
+        }
+
+        return (
+            <main>
+                <Header number={counter}/>
+                <button onClick={increaseCounter}>
+                    Click Me!
+                </button>
+            </main>
+        );
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>

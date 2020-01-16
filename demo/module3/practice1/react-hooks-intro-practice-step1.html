@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Hooks Intro</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+    <style>
+        html {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: inherit;
+            -moz-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+            "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+            sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #1a2222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section {
+            width: 360px;
+            padding: 30px;
+            background-color: #d1dae0;
+            border-bottom: 4px solid #abb5b8;
+            box-shadow: 8px 8px 0 0 #000000;
+        }
+
+        .row:not(:first-child) {
+            margin-top: 25px;
+        }
+
+        .row-title,
+        section input {
+            font-size: 1em;
+            font-weight: bold;
+            color: #696969;
+            padding-left: 8px;
+        }
+
+        section input {
+            border: none;
+        }
+
+        .row-content {
+            font-size: 2em;
+            font-weight: bold;
+            color: #000000;
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .row-content input,
+        .row-content input:focus {
+            padding: 7px;
+            color: #000000;
+            border-radius: 8px;
+            width: 100%;
+            outline: none;
+        }
+
+        .row-content input {
+            background-color: transparent;
+        }
+
+        .row-content input:focus {
+            background-color: #a0aaad;
+        }
+
+        .row-content input:focus::selection {
+            background: #fff3a3;
+        }
+
+        .row-content input:focus::-moz-selection {
+            background: #fff3a3;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    // Challenge: create re-usable logic for input and title changes (as if you want to use it on a different component)
+
+    'use strict';
+    const useState = React.useState;
+    const useEffect = React.useEffect;
+
+    const Row = ({label, children}) => (
+        <div className="row">
+            <span className="row-title">{label}</span>
+            <span className="row-content">{children}</span>
+        </div>
+    );
+
+
+    const App = () => {
+        const [name, setName] = useState('Micky');
+        const [surname, setSurname] = useState('Mouse');
+
+        useEffect(() => {
+            document.title = `${name} ${surname}`
+        }, [name, surname]);
+
+        const handleNameChange = (e) => {
+            setName(e.target.value);
+        };
+
+        const handleSurnameChange = (e) => {
+            setSurname(e.target.value);
+        };
+
+        return (
+            <section>
+                <Row label="Name">
+                    <input value={name} onChange={handleNameChange}/>
+                </Row>
+                <Row label="Surname">
+                    <input value={surname} onChange={handleSurnameChange}/>
+                </Row>
+            </section>
+        );
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>
