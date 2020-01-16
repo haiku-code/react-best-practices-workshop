@@ -12,10 +12,10 @@
 ### Agenda
 1. Functional vs Class Components
 2. React Hooks introduction
-3. More Hooks
 3. Writing Custom Hooks
 4. Refactoring with Hooks
-5. Pitfalls
+5. More Hooks
+6. Pitfalls
 
 ---
 
@@ -65,9 +65,32 @@ And there is...
 
 ---
 
-### Practice Time - warmup
-convert class to hooks
+### Practice Time
+Practice 1 - **step 0** is the starting point
+1. Convert to App to Function using hooks
+2. create re-usable logic for input and title changes (as if you want to use it on a different component)
 
+
+
+---
+
+### Writing Custom Hooks
+Writing Costume hooks - useInput
+Rooks and other hooks
+
+---
+
+### Practice Time
+On Okat-Cupid Repo
+1. Convert components from Classes to Functions 
+2. Adding a feature: text-filter with clear button
+
+---
+
+### Refactoring with Hooks
+1. ~~Convert components from Classes to Functions ~~
+2. ~~Adding a feature: text-filter with clear button~~
+3. Make hook reusable - use it in a different component
 
 ---
 
@@ -87,38 +110,36 @@ https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853
 
 ---
 
-### Writing Custom Hooks
-Writing Costume hooks - useInput
-Rooks and other hooks
+### Pitfalls
+* Not following [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
+* Functional component run (entirely)  on each change
+* Think about the whole component as render function
 
----
-
-### Practice Time
-repo
-1. Convert components from classes to functions 
-2. Adding a feature search with clear - use useDynamicInput
-
----
-
-### Refactoring with Hooks
-1. ~~Convert components from classes to functions~~
-2. ~~Adding a feature search with clear - write useDynamicInput~~
-3. Make hook reusable - use it in a different component
+### Practice:
+Pitfalls - see the changes and fix the 2 bugs
 
 ---
 
 ### Pitfalls
-* Not following [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
+> Functional component run (entirely)  on each change
+* Every variable and function will be recreated
+* You can prevent that using Hooks
+    * useState
+    * useEffect
+    * useMemo / useCallback
+    * useRef
+* When using hooks remember - Function close upon creation (like in `useEffect`);
+
+---
+
+### Pitfalls
 * overusing hook 
     - should it be stateful?
     - do i really need hook for that?
-    - is it the right way to do it? (like :useEffect for fetching data)
-* not understanding how it works - 
-    - on functional component - function is called on each render 
-    (the whole component is a render function)
-* useEffect forgetting deps 
-    - not providing empty array - re-creat on each call)
-    - deps does not include all dependencies - useEffect will not update)
+    - is it the right way to do it? (like `useEffect` for fetching data)
+* forgetting deps for function-parameters hooks (like `useEffect`)
+    - not providing empty array - re-create on each call
+    - deps does not include all dependencies - `useEffect` will not update)
     - not understanding useMemo / useCallback
 * not using the full power of hooks - reusability
 
