@@ -13,34 +13,78 @@
 
 ### Agenda
 1. About Me
+<br><br>
 2. The Learning System
+<br><br>
 3. Workshop Overview
 
 ---
 
 ### About Me
+<div style="display: flex">
+<img src="./assets/me.jpg" >
+
+<div  style="align-self: center">
+
 * General
-* Dev experience
-* Teaching experience (as developer, Gvahim, Webbeast)
+
+* As a Dev
+
+* As a Trainer
+
+* Open Source Community
+
+</div>
+
+</div>
 
 ---
 
 ### The Learning System
-* Reversed classroom - class prep
-* Lecture vs Practice - 20/40 ratio (hopefully)
-* Class and Home practice (optional) 
-* Material
-    * Official documentation
-    * Conventions and Posts
-    * Further reading & Extra
-* Tools
-    * Slides - reveal-md
-    * Code - git with ordered branches
-    * Communication channel
+<br>
+
+* <!-- .element: class="fragment" -->Discussion and Interaction
+<br><br>
+* <!-- .element: class="fragment" -->Reversed classroom - class prep
+<br><br>
+* <!-- .element: class="fragment" -->Lecture vs Practice - 20/40 ratio (hopefully)
+<br><br>
+* <!-- .element: class="fragment" -->Class Practice: short - isolated / long - repo 
+
+---
+
+### The Learning System
+
+Slides and Material - Links:
+<br><br>
+* <!-- .element: class="fragment" -->Official documentation
+<br><br>
+* <!-- .element: class="fragment" -->Conventions Videos and Posts
+<br><br>
+* <!-- .element: class="fragment" -->Further reading & Extra
+
+---
+
+### The Learning System
+Tools
+
+* Slides: [reveal-md](https://github.com/haiku-code/react-best-practices-workshop/blob/master/intro.md)
+<br><br>
+* <!-- .element: class="fragment" -->Everything is in the repo
+<br><br>
+* <!-- .element: class="fragment" -->Code - demo folder / git with ordered branches
+<br><br>
+* <!-- .element: class="fragment" -->Communication channel
+
 
 ---
 
 ### Workshop Overview:
-* Goals
-* Modules Overview
-* Let's get started
+
+* <!-- .element: class="fragment" -->Workshop Goals
+<br><br>
+* <!-- .element: class="fragment" -->Modules Goals and Structure
+<br><br>
+* <!-- .element: class="fragment" -->Let's get started
+
+

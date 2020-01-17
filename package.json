@@ -2,7 +2,7 @@
   "name": "react-best-practices-workshop",
   "author": "Yuval Bar Levi",
   "scripts": {
-    "intro": "reveal-md ./intro.md",
+    "intro": "reveal-md ./intro.md --theme solarized",
     "m1": "reveal-md ./module1.md",
     "m2": "reveal-md ./module2.md",
     "m3": "reveal-md ./module3.md --css ./assets/centered-tables.css",
