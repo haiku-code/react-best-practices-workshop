@@ -1,22 +1,85 @@
 ## Module 1
 ### Common Design Patterns
-(This document is optimized for presentation using [reveal-md](https://github.com/webpro/reveal-md))
+(Optimized for presentation using [reveal-md](https://github.com/webpro/reveal-md))
 
 ### Goals
-* Get familiar with common design patterns in React
+* Get familiar with React's common design patterns 
 * Understand the motivation and when should you apply them
 
 ---
 
 ### Agenda
-1. High Order Component 
-2. Logical / View component separation
+1. Logical / View component separation
+2. High Order Component 
 3. Component Index
 4. Composition vs Inheritance  
 5. Lazy loading and Suspense
 6. Controlled / Uncontrolled Components
 7. Some more patterns
 
+---
+
+### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
+A design pattern of separate complex logic from other aspects a component. Other names:
+* Smart and Dumb components
+* Container and View components
+* Logic / Data and Presentational components
+
+---
+
+### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
+[Example:](https://gist.github.com/chantastic/fc9e3853464dffdb1e3c)
+```
+const Commentlist = comments => (
+  <ul>
+    {comments.map(({ body, author }) =>
+      <li>{body}-{author}</li>
+    )}
+  </ul>
+)
+
+class CommentListContainer extends React.Component {
+  constructor() {
+    super();
+    this.state = { comments: [] }
+  }
+
+  componentDidMount() {
+    // get images somehow and update state
+  }
+
+  render() {
+    return <CommentList comments={this.state.comments} />;
+  }
+}
+
+```
+---
+
+### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
+Practice time
+
+File `module1\logic-view-separation.html`
+
+---
+
+### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
+Keep in mind:
+
+There are other technique to achieve this goals, like [hooks](https://reactjs.org/docs/hooks-custom.html).
+Make sure not to enforce this technique without necessity.
+
+---
+
+### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
+Usage:
+
+* When separation can make components reusable. 
+* When you want to simplify complex component. 
+* When writing test seams hard due to component complexity. 
+
+Pitfalls:
+* [Over - usage when not required](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 
 ---
 
@@ -55,71 +118,23 @@ More examples:
 * react [withRouter](https://reacttraining.com/react-router/core/api/withRouter)
 
 ---
+### [High Order Component](https://reactjs.org/docs/higher-order-components.html)
 
-### Practice 1
+Practice time
+
+File `module1\HOC.html`
 
 ---
 
 ### [High Order Component](https://reactjs.org/docs/higher-order-components.html)
 Usage:
 
-Mostly when using 2rd Party libraries. You can enhance you component (like - custom state-management access)  
+Mostly when using 3rd Party libraries. You can enhance you component (like - custom state-management access)  
 
 Pitfalls:
 * [Don’t Use HOCs Inside the render Method](https://reactjs.org/docs/higher-order-components.html)
 * [Static Methods Must Be Copied Over](https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over)
 * [Refs Aren’t Passed Through](https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over)
-
----
-
-### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
-A design pattern of separate complex logic from other aspects a component. Other names:
-* smart and dumb components
-* Container and View components
-
-Note: there are other technique to achieve this goals, like [hooks](https://reactjs.org/docs/hooks-custom.html).
-Make sure not to enforce this technique without necessity.
-<!-- .element: class="fragment" -->
-
----
-
-### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
-[Example:](https://gist.github.com/chantastic/fc9e3853464dffdb1e3c)
-```
-const Commentlist = comments => (
-  <ul>
-    {comments.map(({ body, author }) =>
-      <li>{body}-{author}</li>
-    )}
-  </ul>
-)
-
-class CommentListContainer extends React.Component {
-  constructor() {
-    super();
-    this.state = { comments: [] }
-  }
-
-  componentDidMount() {
-    // get images somehow and update state
-  }
-
-  render() {
-    return <CommentList comments={this.state.comments} />;
-  }
-}
-
-```
-
----
-
-### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
-Usage:
-
-When separation can make components reusable. When you want to simplify complex component. 
-
-Pitfalls:
-* [Over - usage when not required](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 
 ---
 
@@ -140,30 +155,38 @@ Usage: Create explicit public interfaces (useful when working in large teams)
 ---
 
 ### [Composition vs Inheritance](https://reactjs.org/docs/composition-vs-inheritance.html)
+Where should we use Components Inheritance?
+
 > "At Facebook, we use React in thousands of components, and we haven’t found any use cases where we would recommend creating component inheritance hierarchies."
+<!-- .element: class="fragment" -->
+
+---
+
+### [Composition vs Inheritance](https://reactjs.org/docs/composition-vs-inheritance.html)
 
 Sometimes we think about components as being “special cases” of other components.
+
 Using composition, we can create **Specific** Component by rendering more **Generic**
 Component with **Specific `props` or `children`**
+<!-- .element: class="fragment" -->
 
 ---
 
 ### [Composition vs Inheritance](https://reactjs.org/docs/composition-vs-inheritance.html)
 ```
-const Dialog({title, message) => (
-  <FancyBorder color="blue">
-    <h1 className="Dialog-title">
+const Dialog = ({title, message) => (
+  <div className="dialog">
+    <h1 className="dialog-title">
       {title}
     </h1>
-    <p className="Dialog-message"
+    <p className="dialog-message"
       {message}
     </p>
-  </FancyBorder>
+  </div>
 );
 
-const WelcomeDialog() => (
-  <Dialog
-    title="Welcome"
+const WelcomeDialog = () => (
+  <Dialog title="Welcome"
     message="Thank you for visiting our spacecraft!" />
 );
 ```
@@ -204,9 +227,11 @@ When it can make the app more consistent. When composition can make components r
 
 ---
 
-### Practice 2
+### [Composition vs Inheritance](https://reactjs.org/docs/composition-vs-inheritance.html)
 
+Practice time
 
+File `module1\composition.html`
 
 ---
 
@@ -251,9 +276,14 @@ The (React) solution: Concurrent Mode
 
 > Concurrent Mode is a **set of new features** that help React apps stay responsive and gracefully adjust to the user’s device capabilities and network speed
 
-Some are stable (like fiber) while other still experimental (some aspects of Suspend), Like:
-* Pause render (example: pause showing spinner if data become available before render required)
-* Scheduling - set priorities for different tasks (user input vs render)
+---
+
+### [Lazy loading and Suspense](https://reactjs.org/docs/concurrent-mode-suspense.html)
+Concurrent Mode is a set of new features. Some are stable (like fiber) while other still experimental (some aspects of Suspend), Like:
+
+* <!-- .element: class="fragment" -->Pause render (example: pause showing spinner if data become available before render required)
+
+* <!-- .element: class="fragment" -->Scheduling - set priorities for different tasks (user input vs render)
 
 ---
 
@@ -277,12 +307,14 @@ Answer: they already have some sort of "state"
 Example: when we type inside an input we change it's value
 <!-- .element: class="fragment" -->
 
+---
+
+### Controlled / Uncontrolled Components
+
 There are two ways to treat this "internal state"
-<!-- .element: class="fragment" -->
-* Manage it - Force them to behave like any other component ([Controlled Components](https://reactjs.org/docs/forms.html#controlled-components))
-<!-- .element: class="fragment" -->
-* Leave it - Keep the default behaviour ([Uncontrolled Components](https://reactjs.org/docs/uncontrolled-components.html))
-<!-- .element: class="fragment" -->
+
+* Manage it - Force them to behave like any other component <!-- .element: class="fragment" -->([Controlled Components](https://reactjs.org/docs/forms.html#controlled-components))
+* Leave it - Keep the default behaviour <!-- .element: class="fragment" -->([Uncontrolled Components](https://reactjs.org/docs/uncontrolled-components.html))
 
 ---
 
@@ -354,10 +386,21 @@ class NameForm extends React.Component {
 
 Notice the [usage of Ref](https://reactjs.org/docs/refs-and-the-dom.html).
 > Refs provide a way to access DOM nodes or React elements created in the render method
-* Access the DOME node using `current` property.
-* `current` property will be assigned by React (using`ref` prop) 
+
+* <!-- .element: class="fragment" -->Access the DOM node using <code>current</code> property
+* <!-- .element: class="fragment" --><code>current</code> property will be assigned by React (using `ref` prop) 
+
+
+
+---
+
+### Controlled / Uncontrolled Components
+* Ref can hold any value - not just DOM nodes
+<!-- .element: class="fragment" -->
 * Ref will be create once and live until component unmount (like state)
-* Ref can be [forwarded](https://reactjs.org/docs/forwarding-refs.html)
+<!-- .element: class="fragment" -->
+* Ref can be <!-- .element: class="fragment" -->[forwarded](https://reactjs.org/docs/forwarding-refs.html)
+
 ```jsx harmony
 // use forwardRef HOC
 const FancyButton = React.forwardRef((props, ref) => (
@@ -369,20 +412,19 @@ const FancyButton = React.forwardRef((props, ref) => (
 const ref = React.createRef();
 <FancyButton ref={ref}>Click me!</FancyButton>;
 ```
----
-
-### Practice 3
+<!-- .element: class="fragment" -->
 
 ---
 
 ### Some more patterns
-[Forwarding Refs](https://reactjs.org/docs/forwarding-refs.html)
-[Fragments](https://reactjs.org/docs/fragments.html)
-[React.PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
-[React.memo](https://reactjs.org/docs/hooks-reference.html#usememo)
-[Portals](https://reactjs.org/docs/portals.html)
-[Error Boundaries](https://reactjs.org/docs/error-boundaries.html)
-[Context](https://reactjs.org/docs/context.html)
+* [Forwarding Refs](https://reactjs.org/docs/forwarding-refs.html)
+* [Fragments](https://reactjs.org/docs/fragments.html)
+* [React.PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
+* [React.memo](https://reactjs.org/docs/hooks-reference.html#usememo)
+* [Portals](https://reactjs.org/docs/portals.html)
+* [Error Boundaries](https://reactjs.org/docs/error-boundaries.html)
+* [Context](https://reactjs.org/docs/context.html)
+* [JSX Dot Notation](https://reactjs.org/docs/jsx-in-depth.html#using-dot-notation-for-jsx-type)
 
 ---
 
@@ -390,23 +432,58 @@ const ref = React.createRef();
 Design Patterns are general repeatable solution to common problems in software design
 
 Let's go over the problems and solutions we have covered
+<!-- .element: class="fragment" -->
+
+<div style="text-align:left">
+
 
 Reusing component logic
+<!-- .element: class="fragment" -->
 * HOC
+<!-- .element: class="fragment" -->
 * Logical / View component separation
+<!-- .element: class="fragment" -->
+
+</div>
+
+---
+
+### Wrap Up
+<div style="text-align:left">
+
 
 Reusing Component view
+<!-- .element: class="fragment" -->
 * Logical / View component separation
+<!-- .element: class="fragment" -->
 * Composition
+<!-- .element: class="fragment" -->
+
+
 
 Large app with lots of code
+<!-- .element: class="fragment" -->
 * Code splitting and lazy loading
+<!-- .element: class="fragment" -->
+
+</div>
+
+---
+
+### Wrap Up
+<div style="text-align:left">
+
 
 Default element behavior ir preferable  
+<!-- .element: class="fragment" -->
 * Uncontrolled Components
+<!-- .element: class="fragment" -->
 
 DOM element access required 
-* Using `ref`
+<!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->Using `ref`
+
+</div>
 
 ---
 
@@ -414,6 +491,7 @@ DOM element access required
 * [A Quick Intro to React's Higher-Order Components](https://alligator.io/react/higher-order-components/)
 * [An introduction to HOC](https://levelup.gitconnected.com/understanding-react-higher-order-components-by-example-95e8c47c8006)
 * [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+* [Categorizing Components Into Smart & Dumb Components](https://alligator.io/react/smart-dumb-components/)
 
 ---
 
@@ -421,3 +499,4 @@ DOM element access required
 * [Render Props](https://reactjs.org/docs/render-props.html)
 * [Modern React - The Essentials](https://www.youtube.com/watch?v=sjjaGxs3e1c&t=879s)
 * [Concurrent Mode](https://reactjs.org/docs/concurrent-mode-intro.html)
+* [Real world examples of Higher Order Components](https://medium.com/@onoufriosm/real-world-examples-of-higher-order-components-hoc-for-react-871f0d8b39d8)

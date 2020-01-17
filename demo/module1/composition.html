@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React HOC</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+    <style>
+        div {
+            margin: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            width: 500px;
+        }
+
+        li img {
+            height: 30px;
+            margin: 0 15px 0 0;
+        }
+
+        li p {
+            font: 200 12px/1.5 Georgia, Times New Roman, serif;
+        }
+
+        li {
+            padding: 10px;
+            overflow: auto;
+        }
+
+        li:hover {
+            background: #eee;
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            display: block;
+            text-underline: none;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    'use strict';
+    // Challenge: refactor ProfilesList so it will use a generic component - List
+    // Food for thought: what's do we get from this separation?
+
+    const ProfilesList = ({users}) => (
+        <ul>
+            {users.map(user => (
+                <li>
+                    <a href={user.html_url} target="_blank">
+                        <img src={user.avatar_url}/>
+                        <span>{user.login}</span>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    );
+
+    class ProfilesListContainer extends React.Component {
+        constructor() {
+            super();
+            this.state = {users: []};
+        }
+
+        componentDidMount() {
+            fetch('https://api.github.com/users')
+                .then(res => res.json())
+                .then(users => this.setState({users}));
+        }
+
+        render() {
+            return (
+                <ProfilesList users={this.state.users}/>
+            );
+        }
+    }
+
+    class App extends React.Component {
+        render() {
+            return (
+                <main>
+                    <h>First Github Users</h>
+                    <ProfilesListContainer/>
+                </main>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>

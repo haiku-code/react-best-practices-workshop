@@ -1,6 +1,6 @@
 ## Module 3
 ### Functional Components and Hooks
-(This document is optimized for presentation using [reveal-md](https://github.com/webpro/reveal-md))
+(Optimized for presentation using [reveal-md](https://github.com/webpro/reveal-md))
 
 ### Goals
 * Understand the motivation behind hooks
@@ -13,7 +13,6 @@
 1. Functional vs Class Components
 2. React Hooks introduction
 3. Writing Custom Hooks
-4. Refactoring with Hooks
 5. More Hooks
 6. Pitfalls
 
@@ -65,92 +64,152 @@ And there is...
 
 ---
 
-### Practice Time
-Practice 1 - **step 0** is the starting point
+### React Hooks introduction
+Practice Time
+
+Starting point: `practice1/react-hooks-intro-practice-step0.html`
 1. Convert to App to Function using hooks
 2. create re-usable logic for input and title changes (as if you want to use it on a different component)
 
+---
 
+### Writing [Custom Hooks](https://reactjs.org/docs/hooks-custom.html)
+* Review useFormInput - what we've done so far
+* [Hooks Intro - including useFormInput demo](https://youtu.be/dpw9EHDh2bM?t=707)
+* [Rooks](https://github.com/imbhargav5/rooks)
+* [usehooks](https://usehooks.com/)
+
+You'll find many custom hooks online - not all hooks are good hooks! 
+Check the code and make sure it fit your requirements.
+<!-- .element: class="fragment" -->
 
 ---
 
 ### Writing Custom Hooks
-Writing Costume hooks - useInput
-Rooks and other hooks
+Practice Time
+
+Starting point: `practice1/react-hooks-intro-practice-step3.html`
+1. ~~Convert to App to Function using hooks~~
+2. ~~Create re-usable logic for input and title changes (as if you want to use it on a different component)~~
+3. Add a clear button for each input (useFormInput should be improved for that...)
 
 ---
 
-### Practice Time
-On Okat-Cupid Repo
+### Writing Custom Hooks
+Practice Time On Okat-Cupid Repo
 1. Convert components from Classes to Functions 
 2. Adding a feature: text-filter with clear button
 
 ---
 
-### Refactoring with Hooks
-1. ~~Convert components from Classes to Functions ~~
-2. ~~Adding a feature: text-filter with clear button~~
-3. Make hook reusable - use it in a different component
+### [More Hooks](https://reactjs.org/docs/hooks-reference.html)
+
+* [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext)
+* [useRef](https://reactjs.org/docs/hooks-reference.html#useref)
+* [useReducer](https://reactjs.org/docs/hooks-reference.html#usereducer)
 
 ---
 
-### More Hooks
+### [More Hooks](https://reactjs.org/docs/hooks-reference.html)
 
-More Hooks
-useContext
-useRef
-useMemo
-useCallback
-> React.useMemo will call the function and return its result while React.useCallback will return the function without calling it.
+* [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo)
+* [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback)
 
+React.useMemo will call the function and return its result, while React.useCallback will return the function without calling it.
+<!-- .element: class="fragment" -->
 
-useReducer
-https://dev.to/dinhhuyams/introduction-to-react-memo-usememo-and-usecallback-5ei3
-https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853
+Therefore:
+<!-- .element: class="fragment" -->
+
+> useCallback(fn, deps) is equivalent to useMemo(() => fn, deps).
+<!-- .element: class="fragment" -->
+
 
 ---
 
 ### Pitfalls
-* Not following [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
-* Functional component run (entirely)  on each change
-* Think about the whole component as render function
+<div style="text-align:left">
 
-### Practice:
-Pitfalls - see the changes and fix the 2 bugs
+* Not following<!-- .element: class="fragment" --> [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
+
+
+* <!-- .element: class="fragment" -->Functional component run (entirely) on each change
+
+* <!-- .element: class="fragment" -->Tip: Think about the whole component as render function
+
+</div>
+
+---
+
+### Pitfalls
+Practice Time
+
+Starting point: `pitfalls/react-hooks-intro-pitfall1.html`
+
+See the changes and fix the 2 bugs
 
 ---
 
 ### Pitfalls
 > Functional component run (entirely)  on each change
-* Every variable and function will be recreated
-* You can prevent that using Hooks
-    * useState
-    * useEffect
+<div style="text-align:left">
+
+* <!-- .element: class="fragment" -->Every variable and function will be recreated
+
+* <!-- .element: class="fragment" -->You can prevent that using Hooks
+    * useState / useEffect
     * useMemo / useCallback
     * useRef
-* When using hooks remember - Function close upon creation (like in `useEffect`);
+* <!-- .element: class="fragment" -->When using hooks remember - Function close 
+upon creation (like in <code>useEffect</code>);
+
+</div>
 
 ---
 
 ### Pitfalls
-* overusing hook 
-    - should it be stateful?
-    - do i really need hook for that?
-    - is it the right way to do it? (like `useEffect` for fetching data)
-* forgetting deps for function-parameters hooks (like `useEffect`)
+* <!-- .element: class="fragment" -->overusing hook 
+    - Should it be stateful?
+    - Do i really need hook for that?
+    - Is it the right way to do it? (like `useEffect` for fetching data)
+* <!-- .element: class="fragment" -->Forgetting deps for function-parameters hooks
     - not providing empty array - re-create on each call
-    - deps does not include all dependencies - `useEffect` will not update)
+    - deps does not include all dependencies
     - not understanding useMemo / useCallback
-* not using the full power of hooks - reusability
+
+---
+
+### Pitfalls
+Few Tips: 
+* <!-- .element: class="fragment" -->strive to using the full power of hooks - logic reuse
+* Always check deps to avoid <!-- .element: class="fragment" --> [exhaustive-deps](https://github.com/facebook/react/issues/14920)
+* Use<!-- .element: class="fragment" --> [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+* Keep asking yourself -<!-- .element: class="fragment" --> [what can I memoize?](https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853)
 
 ---
 
 ### Wrap Up
+We started with the problems with Class components:
+<!-- .element: class="fragment" -->
+
+Hard to reuse logic, hard to read, "this"
+<!-- .element: class="fragment" -->
+
+Hooks give much more power to Function Component, and solve all these issues
+<!-- .element: class="fragment" -->
+
+
+But... You must follow the Rules of Hooks! So remember...
+<!-- .element: class="fragment" -->
 
 ---
+<blockquote 
+style="position: absolute; top: 0; left: 0; width: 94%; font-weight: bold; 
+margin: 39px 24px; background-color: gray">
 
-### Agenda
-
+with great power comes great responsibility
+</blockquote>
+<img src="assets/spiderman.jpeg">
 
 ---
 
@@ -160,4 +219,6 @@ Pitfalls - see the changes and fix the 2 bugs
 * [Under the Hook](https://www.youtube.com/watch?v=2anI7jiGjbg)
 
 # Extra
-https://github.com/donycisneros/react-hooks-demo
+* [Code from Dan Abramov Hooks Intro](https://github.com/donycisneros/react-hooks-demo)
+* [Introduction to React.memo, useMemo and useCallback](https://dev.to/dinhhuyams/introduction-to-react-memo-usememo-and-usecallback-5ei3)
+* [React Hooks: Memoization](https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853)

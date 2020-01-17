@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Hooks Intro</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>-->
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobx/5.15.2/mobx.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobx/5.0.3/mobx.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobx-react/5.4.4/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <style>
+        body {
+            padding: 40px;
+            text-align: center;
+            font: normal normal bold 50px sans-serif;
+        }
+
+        button {
+            font: normal normal bold 50px sans-serif;
+            padding: 20px;
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            background-color: rgb(46, 70, 221);
+            text-decoration: none;
+            border: transparent;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    'use strict';
+    const {useState, useEffect} = React;
+    const {decorate, observable, computed, action} = mobx;
+    const {observer, Provider} = mobxReact;
+
+    // Steps:
+    // 1. Convert App to functional component (Done)
+    // 2. Convert state to useState hook (Done)
+    // 3. Modify increaseCounter to use hook's setState
+    // 4. Convert componentDidMount and componentWillUnmount to useEffect
+
+    class TodoStore {
+        todos = [
+            {
+                id: "1571759209508",
+                title: "Learn Mobx",
+                completed: false
+            },
+            {
+                id: "1571759209509",
+                title: "Make Mobx Todo App",
+                completed: true
+            }
+        ];
+
+        get completedTodosCount() {
+            return this.todos.filter(
+                todo => todo.completed === true
+            ).length;
+        }
+
+        addTodo(task) {
+            this.todos.push({
+                task: task,
+                completed: false,
+                assignee: null
+            });
+        }
+
+        completeTodo(id) {
+            this.todos = this.todos.map(todo => {
+                if (todo.id == id) {
+                    todo.completed = !todo.completed;
+                }
+                return todo;
+            });
+        }
+
+        deleteTodo(id) {
+            this.todos = this.todos.filter(todo => {
+                return todo.id != id;
+            });
+        }
+
+
+    }
+
+    // using decorate as an alternative for decorators
+    decorate(TodoStore, {
+        todos: observable,
+        completedTodosCount: computed,
+        addTodo: action,
+        completeTodo: action,
+        deleteTodo: action,
+    });
+
+    const store = new TodoStore();
+
+    function TodoList({todos}) {
+
+
+        return (
+            <section className={`todo-list ${this.props.store.todos.length == 0 ? 'hidden' : ''} `}>
+                {todos.map(todo =>
+                    <Todo
+                        todo={todo}
+                        handleComplete={handleComplete}
+                        handleDelete={handleDelete}
+                    />
+                )}
+            </section>
+        );
+    }
+
+
+    function App({store}) {
+        store.todos.length;
+        const [counter, setCounter] = useState(0) ;
+
+
+        return (
+            <main>
+                <h1>MobX Todo App</h1>
+                <div className="container">
+                    <div className="input-section">
+                        <input className="input-area" type="text" placeholder="Enter todo" ref="textInput"/>
+                        <div className="add-btn" onClick={this.addTodo}>
+                            <i className="fas fa-plus-circle" />
+                        </div>
+                    </div>
+                    <TodoList store={this.props.store} />
+                </div>
+            </main>
+        );
+    }
+
+    ReactDOM.render(
+        <App store={store}/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>

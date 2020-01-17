@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React HOC</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+    <style>
+        body {
+            padding: 40px;
+            text-align: center;
+            font: normal normal bold 50px sans-serif;
+        }
+
+        h1 {
+            background-color: lightgray;
+        }
+
+        h1 span, h1 input {
+            font-size: 30px;
+        }
+
+        span, input {
+            font-size: 15px;
+        }
+
+        button {
+            font: normal normal bold 20px sans-serif;
+            padding: 10px;
+            margin: 10px;
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            background-color: rgb(46, 70, 221);
+            text-decoration: none;
+            border: transparent;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    'use strict';
+    // Challenge: build withToggle HOC which allow inner Component to have toggleStatus
+    // Step 1: pass props
+    // Step 2: add state with toggleStatus
+    // Step 3: add toggle handler which update the state
+
+    const withToggle = (PassedComponent) =>
+        class WithToggle extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    toggleStatus: false,
+                };
+            }
+
+            toggle = () => {
+                this.setState({
+                    toggleStatus: !this.state.toggleStatus
+                })
+            };
+
+            render() {
+                return (
+                    <PassedComponent
+                        {...this.props}
+                        toggle={this.toggle}
+                        toggleStatus={this.state.toggleStatus}
+                    />
+                )
+            }
+        };
+
+
+    class Header extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {value: this.props.text};
+        }
+
+        handleChange = (event) => {
+            this.setState({value: event.target.value});
+        };
+
+        render() {
+            const value = this.state.value;
+            const {toggle, toggleStatus} = this.props;
+
+            return (
+                <div>
+                    <h1>
+                        {toggleStatus
+                            ? <input type="text" value={value} onChange={this.handleChange}/>
+                            : <span>{value}</span>
+                        }
+                        <button onClick={toggle}>
+                            {toggleStatus ? 'Done' : 'Edit'}
+                        </button>
+                    </h1>
+
+                </div>
+            );
+        }
+    }
+
+    const EditableHeader = withToggle(Header);
+
+    class TextView extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {value: this.props.text};
+        }
+
+        handleChange = (event) => {
+            this.setState({value: event.target.value});
+        };
+
+        render() {
+            const value = this.state.value;
+            const {toggle, toggleStatus} = this.props;
+
+            return (
+                <div>
+                    {toggleStatus
+                        ? <input type="text" value={value} onChange={this.handleChange}/>
+                        : <span>{value}</span>
+                    }
+                    <button onClick={toggle}>
+                        {toggleStatus ? 'Done' : 'Edit'}
+                    </button>
+                </div>
+            );
+        }
+    }
+
+    const EditableTextView = withToggle(TextView);
+
+
+    class App extends React.Component {
+        constructor() {
+            super();
+        }
+
+        render() {
+            return (
+                <main>
+                    <EditableHeader text="This is an editable header"/>
+                    <EditableTextView text="This is an editable Text"/>
+                </main>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>

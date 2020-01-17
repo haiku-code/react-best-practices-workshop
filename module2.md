@@ -1,6 +1,6 @@
 ## Module 2
 ### Unlocking Creat React App power
-(This document is optimized for presentation using [reveal-md](https://github.com/webpro/reveal-md))
+(Optimized for presentation using [reveal-md](https://github.com/webpro/reveal-md))
 
 ### Goals
 * Understand the benefits of using [CRA](https://create-react-app.dev/docs/getting-started/)
@@ -22,14 +22,14 @@ Advantages using latest version of CRA
 * [PWA](https://create-react-app.dev/docs/making-a-progressive-web-app/)
 * [Build and Environment variables (no secrets)](https://create-react-app.dev/docs/adding-custom-environment-variables#what-other-env-files-can-be-used)
 * [Assets](https://create-react-app.dev/docs/adding-images-fonts-and-files) and [IMAGE_INLINE_SIZE_LIMIT](https://create-react-app.dev/docs/advanced-configuration)
-You can Override CRA and add webpack config, [without ejecting](https://dev.to/nodewarrior/override-cra-and-add-webpack-config-without-ejecting-2f3n)
+* You can Override CRA and add webpack config, [without ejecting](https://dev.to/nodewarrior/override-cra-and-add-webpack-config-without-ejecting-2f3n)
 
 ---
 
 ### Project Structure
 * Overview
 * Easy Upgrade (replace src)
-* Suggested Project Structure (react-atomic-boilerplate)
+* Suggested Project Structure ([react-atomic-boilerplate](https://github.com/yuvalbl/react-atomic-boilerplate))
 
 ---
 
@@ -47,7 +47,7 @@ You can Override CRA and add webpack config, [without ejecting](https://dev.to/n
 CRA provide a useful wrapper for almost any React Project, including 
 easy opt-in integration with many 3rd party libraries and tools.
 
-<div>
-    <img src="./assets/this.gif">
+<div style="height: 65vh">
+    <img src="./assets/ilovecra.jpg">
 </div>
 <!-- .element: class="fragment" -->
