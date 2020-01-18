@@ -25,10 +25,15 @@ Abilities and Tendencies
         <th>Class Component</th>
         <th>Function Component</th>
     </tr>
+    <!-- .element: class="fragment" -->
     <tr><td>Stateful</td><td>Stateless</td></tr>
+    <!-- .element: class="fragment" -->
     <tr><td>Lifecycle events</td><td>X</td></tr>
+    <!-- .element: class="fragment" -->
     <tr><td>Complex</td><td>Simple</td></tr>
+    <!-- .element: class="fragment" -->
     <tr><td>?... </td><td>Readable</td></tr>
+    <!-- .element: class="fragment" -->
 </table>
 
 ---
@@ -39,6 +44,8 @@ And there is...
     <img src="./assets/this.gif">
 </div>
 <!-- .element: class="fragment" -->
+
+
 
 
 ---
@@ -53,6 +60,16 @@ And there is...
 
 >* Classes confuse both people and machines (this) 
 <!-- .element: class="fragment" -->
+
+---
+
+### React Hooks introduction
+Let's Talk about Hooks
+
+<div>
+    <img src="./assets/captainhook.jpg">
+</div>
+
 
 ---
 
@@ -158,8 +175,11 @@ See the changes and fix the 2 bugs
 
 * <!-- .element: class="fragment" -->You can prevent that using Hooks
     * useState / useEffect
+    <!-- .element: class="fragment" -->
     * useMemo / useCallback
+    <!-- .element: class="fragment" -->
     * useRef
+    <!-- .element: class="fragment" -->
 * <!-- .element: class="fragment" -->When using hooks remember - Function close 
 upon creation (like in <code>useEffect</code>);
 
@@ -170,12 +190,18 @@ upon creation (like in <code>useEffect</code>);
 ### Pitfalls
 * <!-- .element: class="fragment" -->overusing hook 
     - Should it be stateful?
+    <!-- .element: class="fragment" -->
     - Do i really need hook for that?
-    - Is it the right way to do it? (like `useEffect` for fetching data)
+    <!-- .element: class="fragment" -->
+    - Is it the right way to do it? (fetching data useEffect?)
+    <!-- .element: class="fragment" -->
 * <!-- .element: class="fragment" -->Forgetting deps for function-parameters hooks
     - not providing empty array - re-create on each call
+    <!-- .element: class="fragment" -->
     - deps does not include all dependencies
+    <!-- .element: class="fragment" -->
     - not understanding useMemo / useCallback
+    <!-- .element: class="fragment" -->
 
 ---
 
@@ -218,7 +244,7 @@ with great power comes great responsibility
 * [A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/)
 * [Under the Hook](https://www.youtube.com/watch?v=2anI7jiGjbg)
 
-# Extra
+### Extra
 * [Code from Dan Abramov Hooks Intro](https://github.com/donycisneros/react-hooks-demo)
 * [Introduction to React.memo, useMemo and useCallback](https://dev.to/dinhhuyams/introduction-to-react-memo-usememo-and-usecallback-5ei3)
 * [React Hooks: Memoization](https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853)

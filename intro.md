@@ -28,7 +28,7 @@
 
 * General
 
-* As a Dev
+* Professional
 
 * As a Trainer
 
@@ -55,7 +55,9 @@
 
 ### The Learning System
 
-Slides and Material - Links:
+Slides and Linked Material:
+<br><br>
+* <!-- .element: class="fragment" -->Module Structure
 <br><br>
 * <!-- .element: class="fragment" -->Official documentation
 <br><br>
@@ -85,6 +87,6 @@ Tools
 <br><br>
 * <!-- .element: class="fragment" -->Modules Goals and Structure
 <br><br>
-* <!-- .element: class="fragment" -->Let's get started
+* <!-- .element: class="fragment" -->Let's get started!
 
 

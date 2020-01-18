@@ -11,7 +11,7 @@
 ### Agenda
 1. Logical / View component separation
 2. High Order Component 
-3. Component Index
+3. Components Index
 4. Composition vs Inheritance  
 5. Lazy loading and Suspense
 6. Controlled / Uncontrolled Components
@@ -20,10 +20,13 @@
 ---
 
 ### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
-A design pattern of separate complex logic from other aspects a component. Other names:
-* Smart and Dumb components
-* Container and View components
-* Logic / Data and Presentational components
+A design pattern of separate complex logic from other aspects a component. 
+
+Other names:
+<!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->Smart and Dumb components
+* <!-- .element: class="fragment" -->Container and View components
+* <!-- .element: class="fragment" -->Logic / Data and Presentational components
 
 ---
 
@@ -72,14 +75,19 @@ Make sure not to enforce this technique without necessity.
 ---
 
 ### [Logical / View component separation](https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43)
+<div style="text-align:left">
+
 Usage:
 
-* When separation can make components reusable. 
-* When you want to simplify complex component. 
-* When writing test seams hard due to component complexity. 
+* <!-- .element: class="fragment" -->When separation can make components reusable. 
+* <!-- .element: class="fragment" -->When you want to simplify complex component. 
+* <!-- .element: class="fragment" -->When writing test seams hard due to component complexity. 
 
 Pitfalls:
-* [Over - usage when not required](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+<!-- .element: class="fragment" -->
+* Over - usage <!-- .element: class="fragment" -->[when not required](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+
+</div>
 
 ---
 
@@ -127,18 +135,29 @@ File `module1\HOC.html`
 ---
 
 ### [High Order Component](https://reactjs.org/docs/higher-order-components.html)
+<div style="text-align:left">
+
 Usage:
 
-Mostly when using 3rd Party libraries. You can enhance you component (like - custom state-management access)  
+* Mostly when using 3rd Party libraries. 
+<!-- .element: class="fragment" -->
+* You can enhance you component (like - custom state-management access)  
+<!-- .element: class="fragment" -->
 
 Pitfalls:
+<!-- .element: class="fragment" -->
 * [Don’t Use HOCs Inside the render Method](https://reactjs.org/docs/higher-order-components.html)
+<!-- .element: class="fragment" -->
 * [Static Methods Must Be Copied Over](https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over)
+<!-- .element: class="fragment" -->
 * [Refs Aren’t Passed Through](https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over)
+<!-- .element: class="fragment" -->
+
+</div>
 
 ---
 
-### [Component Index](https://alligator.io/react/index-js-public-interfaces/)
+### [Components Index](https://alligator.io/react/index-js-public-interfaces/)
 It's a technique rather than Design Pattern (not React specific)
 ```
 // atoms/index.js
@@ -149,8 +168,9 @@ export {default as TextBox} from './TextBox';
 // HomePage.js - using index file
 import {Button, Slider, TextBox} from './atoms'
 ```
-
+<!-- .element: class="fragment" -->
 Usage: Create explicit public interfaces (useful when working in large teams)
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -216,6 +236,7 @@ const App() => (
   />
 );
 ```
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -266,8 +287,11 @@ const Component3 = React.lazy(() => import('./Component3'));
 Some words about Concurrent Mode (Experimental)
 
 The problem - UI may freeze / stuck / etc - because:
+<!-- .element: class="fragment" -->
 * Single UI thread
+<!-- .element: class="fragment" -->
 * Render cannot be paused after started
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -275,25 +299,44 @@ The problem - UI may freeze / stuck / etc - because:
 The (React) solution: Concurrent Mode
 
 > Concurrent Mode is a **set of new features** that help React apps stay responsive and gracefully adjust to the user’s device capabilities and network speed
+<!-- .element: class="fragment" -->
 
 ---
 
 ### [Lazy loading and Suspense](https://reactjs.org/docs/concurrent-mode-suspense.html)
-Concurrent Mode is a set of new features. Some are stable (like fiber) while other still experimental (some aspects of Suspend), Like:
+Concurrent Mode is a set of new features. 
 
-* <!-- .element: class="fragment" -->Pause render (example: pause showing spinner if data become available before render required)
+Some are stable (like fiber) while other still experimental (some aspects of Suspend)
+<!-- .element: class="fragment" -->
 
-* <!-- .element: class="fragment" -->Scheduling - set priorities for different tasks (user input vs render)
+Experimental Features:
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->Pause render 
+    - Example: pause showing spinner if data become available before render required
+    <!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->Scheduling - set priorities for different tasks
+    - Example: user input vs render<!-- .element: class="fragment" -->
+
 
 ---
 
 ### [Lazy loading and Suspense](https://reactjs.org/docs/concurrent-mode-suspense.html)
+<div style="text-align:left">
 
-Usage : When waiting for code / data (preferably split code)
+Usage: 
+
+When waiting for code / data (preferably split code)
 
 Pitfalls:
-* Coupling (Fetching data from inside components)
-* Using when not required (as a state replacement)
+<!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->Coupling (Fetching data from inside components)
+
+* <!-- .element: class="fragment" -->Using when not required (as a state replacement)
+
+
+</div>
 
 ---
 
@@ -349,11 +392,12 @@ class NameForm extends React.Component {
   }
 }
 ```
+<!-- .element: class="fragment" -->
 
 ---
 
 ### Controlled / Uncontrolled Components
-The alternative is [uncontrolled components](https://codepen.io/gaearon/pen/WooRWa?editors=0010), where form data is handled by the DOM itself.
+The alternative is [Uncontrolled components](https://codepen.io/gaearon/pen/WooRWa?editors=0010), where form data is handled by the DOM itself.
 ```jsx harmony
 class NameForm extends React.Component {
   constructor(props) {
@@ -379,6 +423,7 @@ class NameForm extends React.Component {
   }
 }
 ```
+<!-- .element: class="fragment" -->
 
 ---
 
