@@ -117,7 +117,7 @@
 <div id="root"></div>
 
 <script type="text/babel">
-    // Challenge: add a clear button for each input (useFormInput should be improved for that...)
+    // Challenge: add a reset button (back to original value) for each input (useFormInput should be improved for that...)
 
     'use strict';
     const useState = React.useState;
@@ -151,8 +151,10 @@
 
 
     const App = () => {
-        const name = useFormInput('Micky');
-        const surname = useFormInput('Mouse');
+        const DEFAULT_NAME = 'Micky';
+        const DEFAULT_SURNAME = 'Mouse';
+        const name = useFormInput(DEFAULT_NAME);
+        const surname = useFormInput(DEFAULT_SURNAME);
 
         useDocumentTitle(`${name.value} ${surname.value}`, [name, surname]);
 
@@ -160,11 +162,11 @@
             <section>
                 <Row label="Name">
                     <input {...name}/>
-                    <button className="action-button" onClick={() => name.onChange('')}>x</button>
+                    <button className="action-button" onClick={() => name.onChange(DEFAULT_NAME)}>x</button>
                 </Row>
                 <Row label="Surname">
                     <input {...surname}/>
-                    <button className="action-button" onClick={() => surname.onChange('')}>x</button>
+                    <button className="action-button" onClick={() => surname.onChange(DEFAULT_SURNAME)}>x</button>
                 </Row>
             </section>
         );

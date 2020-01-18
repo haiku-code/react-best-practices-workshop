@@ -108,7 +108,8 @@ Practice Time
 Starting point: `practice1/react-hooks-intro-practice-step3.html`
 1. ~~Convert to App to Function using hooks~~
 2. ~~Create re-usable logic for input and title changes (as if you want to use it on a different component)~~
-3. Add a clear button for each input (useFormInput should be improved for that...)
+3. Add a reset button (back to original value) for each input (useFormInput should be improved for that...)
+
 
 ---
 

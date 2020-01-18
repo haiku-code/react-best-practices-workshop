@@ -384,7 +384,9 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" 
+                 value={this.state.value}           
+                 onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -545,3 +547,4 @@ DOM element access required
 * [Modern React - The Essentials](https://www.youtube.com/watch?v=sjjaGxs3e1c&t=879s)
 * [Concurrent Mode](https://reactjs.org/docs/concurrent-mode-intro.html)
 * [Real world examples of Higher Order Components](https://medium.com/@onoufriosm/real-world-examples-of-higher-order-components-hoc-for-react-871f0d8b39d8)
+* [Use React Memo Wisely/](https://dmitripavlutin.com/use-react-memo-wisely/)

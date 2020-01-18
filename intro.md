@@ -12,7 +12,7 @@
 ---
 
 ### Agenda
-1. About Me
+1. Intro
 <br><br>
 2. The Learning System
 <br><br>
@@ -20,19 +20,13 @@
 
 ---
 
-### About Me
 <div style="display: flex">
 <img src="./assets/me.jpg" >
 
-<div  style="align-self: center">
+<div  style="align-self: center; padding: 10px">
 
-* General
+# Who Am I?
 
-* Professional
-
-* As a Trainer
-
-* Open Source Community
 
 </div>
 
