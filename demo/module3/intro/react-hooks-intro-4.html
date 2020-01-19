@@ -57,17 +57,19 @@
         const [counter, setCounter] = useState(0) ;
 
         useEffect(() => {
+            function clear(event) {
+                if (event.key === 'c') {
+                    setCounter(0);
+                }
+            }
+
             window.addEventListener('keypress', clear);
             return () => {
                 window.removeEventListener('keypress', clear)
             }
         }, []);
 
-        function clear(event) {
-            if (event.key === 'c') {
-                setCounter(0);
-            }
-        }
+
 
         function increaseCounter() {
             setCounter(counter + 1);
