@@ -55,7 +55,7 @@
         const [counter, setCounter] = useState(0) ;
 
         useEffect(() => {
-            // change 1: using
+            // change 1: increase instead of clear
             window.addEventListener('keypress', increaseByKey);
             return () => {
                 window.removeEventListener('keypress', increaseByKey)
@@ -65,7 +65,7 @@
         // change 2: extracting function outside of useEffect
         function increaseByKey(event) {
             if (event.key === 'i') {
-                increaseCounter(counter + 1);
+                increaseCounter();
             }
         }
 

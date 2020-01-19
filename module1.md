@@ -408,8 +408,8 @@ class NameForm extends React.Component {
   }
 
   handleSubmit = (event) => {
-    event.preventDefault(this.input.current.value);
-    props.doStuff();
+    event.preventDefault();
+    props.doStuff(this.input.current.value);
   }
 
   render() {
@@ -521,7 +521,7 @@ Large app with lots of code
 <div style="text-align:left">
 
 
-Default element behavior ir preferable  
+Default element behavior is preferable  
 <!-- .element: class="fragment" -->
 * Uncontrolled Components
 <!-- .element: class="fragment" -->
