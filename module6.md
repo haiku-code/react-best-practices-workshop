@@ -19,15 +19,15 @@
 ### What's wrong with CSS?
 Discussion:
 
-What are the problems with css - based styling? (plain css, sass, less etc.)
+What are the problems with css - based styling?
 <!-- .element: class="fragment" -->
 
-* No out-of-the-box isolation - you should use a convention for it (like [BEM](http://getbem.com/))
-* Convention-based isolation is prone to Errors
-* Due to Cascading, style may be unpredictable
-* Dead code elimination is difficult
-* Maintaining Stylesheet and Component files separately
-* Scale - maintaining a large number of stylesheets can be tedious
+* No out-of-the-box isolation - you should use a convention for it (like<!-- .element: class="fragment" --> [BEM](http://getbem.com/))
+* <!-- .element: class="fragment" -->Convention-based isolation is prone to Errors
+* <!-- .element: class="fragment" -->Due to Cascading, style may be unpredictable
+* <!-- .element: class="fragment" -->Dead code elimination is difficult
+* <!-- .element: class="fragment" -->Stylesheet and Component in separate files
+* <!-- .element: class="fragment" -->Scale - maintaining a large number of stylesheets can be tedious
 
 ---
 
@@ -79,18 +79,24 @@ CSS-In-JS Pros vs Cons
 ---
 
 ### A Different Approach
-Discussion: 
-CSS-In-JS Pros vs Cons
+Discussion: CSS-In-JS Pros vs Cons
 
-* No styling collisions
-* Encourage component thinking
-* State-dependent changes are straightforward
+Pros:
+* <!-- .element: class="fragment" -->No styling collisions
+* <!-- .element: class="fragment" -->Encourage component thinking
+* <!-- .element: class="fragment" -->State-dependent changes are straightforward
 
-Inline-Styling Cons:
-* Can't use pseudo-selectors and media queries without external libraries
-* Can't use css tools like pre-processing 
-* No global styling
-* Learning / adjustment time
+---
+
+### A Different Approach
+Discussion: CSS-In-JS Pros vs Cons
+
+Cons:
+<!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->Can't use pseudo-selectors and media queries without external libraries
+* <!-- .element: class="fragment" -->Can't use css tools like pre-processing 
+* <!-- .element: class="fragment" -->No global styling
+* <!-- .element: class="fragment" -->Learning / adjustment time
 
 ---
 
@@ -99,22 +105,28 @@ Inline-Styling Cons:
 > Can't use pseudo-selectors and media queries without external libraries
 
 Use External tools - some of them are really great
+<!-- .element: class="fragment" -->
 
 > Can't use css tools like pre-processing 
+<!-- .element: class="fragment" -->
 
 No need to - Javascript-based styling is powerful. You can share style and constants just like objects. 
+<!-- .element: class="fragment" -->
 
+---
+
+### A Different Approach
  
 > No global styling
-
-* You can still use global css for global stying  / normalize / reset.
-* Suggestion: don't mix css files and CSS-in-JS more than that.
+<!-- .element: class="fragment" -->
+* <!-- .element: class="fragment" -->You can still use global css for global stying  / normalize / reset.
+* <!-- .element: class="fragment" -->Suggestion: don't mix css files and CSS-in-JS more than that.
 
 
 > Learning / adjustment time
-
+<!-- .element: class="fragment" -->
 True, but it worth your time
-
+<!-- .element: class="fragment" -->
 ---
 
 ### A Different Approach
@@ -145,6 +157,12 @@ Why [Material-UI](https://material-ui.com/styles/basics/#hook-api)?
 
 * Compiled to encapsulated css classes - css-like performance
 <!-- .element: class="fragment" -->
+
+---
+
+### Tools Overview
+Why [Material-UI](https://material-ui.com/styles/basics/#hook-api)?
+
 
 * Different APIs: Hooks, Styled components, HOC
 <!-- .element: class="fragment" -->
@@ -198,17 +216,32 @@ export default function MyButton() {
 
 ### Wrap Up
 
+It's might be hard to get use to CSS-in-JS
+<!-- .element: class="fragment" -->
+
+But the benefit can be great so - 
+<!-- .element: class="fragment" -->
+
+Simply Try It!
+<!-- .element: class="fragment" -->
+
+---
+
+### Wrap Up
+
+Or in other words...
+<!-- .element: class="fragment" -->
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZXsQAXx_ao0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- .element: class="fragment" -->
+
 ---
 
 ### Further reading
-* []()
-https://www.engineyard.com/blog/inline-styles-yes-or-no
-https://medium.com/better-programming/all-you-need-to-know-about-css-in-js-984a72d48ebc
+* [inline-styles: yes or no](https://www.engineyard.com/blog/inline-styles-yes-or-no)
+* [All You Need To Know About CSS-in-JS](https://medium.com/better-programming/all-you-need-to-know-about-css-in-js-984a72d48ebc)
 
 ### Extra
 * [What actually is CSS-in-JS?](https://medium.com/dailyjs/what-is-actually-css-in-js-f2f529a2757)
 
----
-
-### Home Work:
 

@@ -31,14 +31,16 @@ which are then reused throughout the site
 ---
 
 ### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
-
 > Atoms - The most basic building block of a web page. 
 
 Atoms arn not dividable.
+<!-- .element: class="fragment" -->
 
-Examples: Buttons, TextBox, links, slider etc.
+---
 
-<img src="./assets/atoms.jpg">
+### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
+Potential Atoms: Buttons, TextBox, links, slider etc.
+<img src="./assets/atoms.jpg" style="height: 70vh">
 
 ---
 
@@ -47,10 +49,15 @@ Examples: Buttons, TextBox, links, slider etc.
 > Molecules - Relatively simple groups of UI elements functioning together as a unit.
 
 Everything bigger than an Atom should be at least - a Molecule 
+<!-- .element: class="fragment" -->
 
-Examples: Search box (TextBox with button or icon), set of buttons or text elements.
+---
 
-<img src="./assets/molecules.jpg">
+### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
+Potential Molecules: Search box (TextBox + button), set of buttons etc.
+<div>
+<img src="./assets/molecules.jpg" style="height: 70vh">
+</div>
 
 ---
 
@@ -60,10 +67,13 @@ Examples: Search box (TextBox with button or icon), set of buttons or text eleme
 
 
 Distinct sections of an interface
+<!-- .element: class="fragment" -->
 
-Examples: Header, Footer, Grid, Carousel
+---
 
-<img src="./assets/organisms.jpg.jpg">
+### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
+Potential Organisms: Header, Footer, Grid, Carousel
+<img src="./assets/organisms.jpg" style="height: 70vh">
 
 ---
 
@@ -73,8 +83,13 @@ Examples: Header, Footer, Grid, Carousel
 > components into a layout and articulate the design’s underlying content structure
 
 Templates are generic page structure (like page with place holder for Components / Content)
+<!-- .element: class="fragment" -->
 
-<img src="./assets/templates.jpg">
+---
+
+### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
+
+<img src="./assets/templates.jpg" style="height: 70vh">
 
 ---
 
@@ -84,13 +99,18 @@ Templates are generic page structure (like page with place holder for Components
 >UI looks like with real representative content in place. 
 
 Page is a specific instance of a Template with content
-
-<img src="./assets/pages.jpg">
+<!-- .element: class="fragment" -->
 
 ---
 
 ### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
-<img src="./assets/atomic-design-abstract-concrete.png">
+
+<img src="./assets/pages.jpg" style="height: 70vh">
+
+---
+
+### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
+<img src="./assets/atomic-design-abstract-concrete.png" style="height: 80vh">
 
 
 ---
@@ -98,36 +118,46 @@ Page is a specific instance of a Template with content
 ### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
 Discussion: Any Issues with this system?
 
-* It is not always clear when a Component is Molecule or Organism
-* For some application aspects of the system can be 
-redundant (think about a map application with single template)  
-* How should we use UI libraries? they already provide us with Atoms!
+* <!-- .element: class="fragment" -->It is not always clear when a Component is Molecule or Organism
+
+* <!-- .element: class="fragment" -->For some application aspects of the system can be redundant (think about a map application with single template)  
+
+
+* <!-- .element: class="fragment" -->How should we use UI libraries? they already provide us with Atoms!
 
 ---
 
 ### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
 Suggestions:
 > It is not always clear when a Component is Molecule or Organism
+<!-- .element: class="fragment" -->
 
 Make your own rule per project. You may specify them by application-state awareness.
 For example: molecule is anything bigger than an atom which is not state-aware,
 Organism is bigger than an atom with state-awareness.
+<!-- .element: class="fragment" -->
 
->For some application aspects of the system can be redundant
-
-Don't take it too seriously - drop what you don't need.
 
 ---
 
 ### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
-Suggestions:
 
+>For some application aspects of the system can be redundant
+<!-- .element: class="fragment" -->
+
+Don't take it too seriously - drop what you don't need.
+<!-- .element: class="fragment" -->
+
+---
+
+### [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) Introduction
 > How should we use UI libraries? they already provide us with Atoms!
 
-* Create you're own Atoms based on the 3rd party library - this would be 
+* <!-- .element: class="fragment" -->Create you're own Atoms based on the 3rd party library - this would be 
 like creating your own variation of the UI library!
 
-* This means the only component to use the 3rd party library directly 
+
+* <!-- .element: class="fragment" -->This means the only component to use the 3rd party library directly 
 are atoms (even if it means importing an element and exporting it as-is).
 
 ---
@@ -169,11 +199,14 @@ Suggested structure is in a similar way of test files:
 
 ### [Storybook](https://storybook.js.org/docs/basics/introduction/)
 There are few format for writing stories:
-* Component Story Format (CSF) - the recommended way to write stories since Storybook 5.2.
-* StoriesOf API - has been the primary way to create stories in Storybook
-* MDX Syntax - Experimental
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->Component Story Format (CSF) - the recommended way to write stories since Storybook 5.2.
+* <!-- .element: class="fragment" -->StoriesOf API - has been the primary way to create stories in Storybook
+* <!-- .element: class="fragment" -->MDX Syntax - Experimental
 
 We'll be using the currently recommended way - Component Story Format (CSF)
+<!-- .element: class="fragment" -->
 
 ---
 
@@ -208,14 +241,20 @@ On Okat-Cupid Repo, add at least 3 stories.
 
 ### Wrap Up
 
+Atomic design can help you design more consistent design system 
+<!-- .element: class="fragment" -->
+
+* <!-- .element: class="fragment" -->Storybook 
+    - <!-- .element: class="fragment" -->Goes perfectly with Atomic design
+    - <!-- .element: class="fragment" -->Help you clarify your design system 
+    - <!-- .element: class="fragment" -->Help you create testable components
+
 ---
 
 ### Further reading
 * [Atomic Design web book](http://atomicdesign.bradfrost.com/table-of-contents/)
 * [Atomic Design and UI Components: Theory to Practice](https://blog.bitsrc.io/atomic-design-and-ui-components-theory-to-practice-f200db337c24)
-https://cheesecakelabs.com/blog/rethinking-atomic-design-react-projects/
+* [Rethinking Atomic React](https://cheesecakelabs.com/blog/rethinking-atomic-design-react-projects/)
 
----
 
-### Home Work:
 
