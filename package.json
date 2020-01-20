@@ -6,7 +6,7 @@
     "m1": "reveal-md ./module1.md",
     "m2": "reveal-md ./module2.md --theme moon",
     "m3": "reveal-md ./module3.md --theme night --css ./assets/centered-tables.css",
-    "m4": "reveal-md module3.md",
+    "m4": "reveal-md module4.md --theme moon",
     "m5": "reveal-md ./module5.md",
     "m6": "reveal-md ./module6.md"
   }

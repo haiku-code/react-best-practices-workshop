@@ -153,6 +153,7 @@ Therefore:
 
 * <!-- .element: class="fragment" -->Functional component run (entirely) on each change
 
+
 * <!-- .element: class="fragment" -->Tip: Think about the whole component as render function
 
 </div>
@@ -249,3 +250,4 @@ with great power comes great responsibility
 * [Code from Dan Abramov Hooks Intro](https://github.com/donycisneros/react-hooks-demo)
 * [Introduction to React.memo, useMemo and useCallback](https://dev.to/dinhhuyams/introduction-to-react-memo-usememo-and-usecallback-5ei3)
 * [React Hooks: Memoization](https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853)
+* [Why Effects CleanUp Run on Each Update](https://reactjs.org/docs/hooks-effect.html#explanation-why-effects-run-on-each-update)

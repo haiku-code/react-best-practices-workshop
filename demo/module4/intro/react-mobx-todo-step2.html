@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Hooks Intro</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobx/5.0.3/mobx.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mobx-react/5.4.4/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <style>
+        body {
+            padding: 40px;
+            text-align: center;
+            font: normal normal bold 20px sans-serif;
+        }
+
+        button {
+            font: normal normal bold 20px sans-serif;
+            padding: 20px;
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            background-color: rgb(46, 70, 221);
+            text-decoration: none;
+            border: transparent;
+            cursor: pointer;
+            outline: none;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    'use strict';
+    const {useState, useEffect, Component} = React;
+    const {decorate, observable, computed, action} = mobx;
+    const {observer} = mobxReact;
+
+    // Steps:
+    // 1. Convert state to observed value count (make count observable, make Counter observer)
+    // 2. Extract count as appState. add handlers as appState.func
+    // 3. include handlers in appState class
+    // 4. mark handlers as actions (Why?)
+
+    const appState = observable({
+        count: 0
+    });
+    appState.increment = function () {
+        this.count++;
+    };
+    appState.decrement = function () {
+        this.count--;
+    };
+
+    class Counter extends Component {
+        render() {
+            return (
+                <div>
+                    Counter {this.props.store.count} <br />
+                    <button onClick={this.handleInc}> + </button>
+                    <button onClick={this.handleDec}> - </button>
+                </div>
+            )
+        }
+
+        handleInc = () => {
+            this.props.store.increment()
+        };
+
+        handleDec = () => {
+            this.props.store.decrement()
+        }
+    }
+    const ObserverCounter = observer(Counter);
+
+    const rootElement = document.getElementById("root");
+    ReactDOM.render(<ObserverCounter store={appState} />, rootElement);
+</script>
+</body>
+</html>

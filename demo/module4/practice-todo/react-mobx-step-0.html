@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MobX Todo</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/mobx@5.15.2/lib/mobx.umd.min.js"></script>
+    <script src="https://unpkg.com/mobx-react-lite@1.4.1/dist/index.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+    <style>
+        body {
+            padding: 10px;
+            text-align: center;
+            font: normal normal bold 20px sans-serif;
+        }
+
+        button, input {
+            font: normal normal bold 16px sans-serif;
+            padding: 10px;
+            margin: 10px;
+            color: white;
+            border-radius: 4px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            background-color: rgb(46, 70, 221);
+            text-decoration: none;
+            border: transparent;
+            cursor: pointer;
+            outline: none;
+        }
+
+        input {
+            color: black;
+            background-color: lightgray;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+        }
+
+        .todo-list {
+            text-align: left;
+            background-color: #ededed;
+            border-radius: 10px;
+            min-height: 220px;
+        }
+
+        .todo-list p {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .todo-list p span {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    'use strict';
+    const {useState, useEffect, useRef} = React;
+    const {decorate, observable, computed, action} = mobx;
+    const {observer} = mobxReactLite;
+
+    // Steps:
+    // 1. Convert App state to MobX store and make app reactive
+    // 2. Add completedTodosCount and use it
+    // 3. Add completeTodo and deleteTodo actions
+
+    const TODO_INIT_VALUE = [
+        {
+            id: "1571759209508",
+            title: "Learn Mobx",
+            completed: false
+        },
+        {
+            id: "1571759209509",
+            title: "Make Mobx Todo App",
+            completed: true
+        }
+    ];
+
+    class TodoStore {
+        todos = TODO_INIT_VALUE;
+    }
+
+    // using decorate as an alternative for decorators
+    // decorate(TodoStore, {
+        // todos: observable,
+        // completedTodosCount: computed,
+        // addTodo: action,
+        // completeTodo: action,
+        // deleteTodo: action,
+    // });
+
+    // ========= Store Config =========== //
+
+    const store = new TodoStore();
+
+    const StoreContext = 'add code here';
+
+    const useStore = () => {
+        // add code here
+    };
+
+    // ========= App Components =========== //
+
+
+    const Todo = ({todo, handleComplete, handleDelete}) => (
+        <p>
+            <input type="checkbox"
+                   checked={todo.completed}
+                   onChange={handleComplete}/>
+            <span>{todo.title}</span>
+            <button onClick={handleDelete}>delete</button>
+        </p>
+    );
+
+    const TodoList = ({todos}) => {
+        return (
+            <section className="todo-list">
+                {todos.map(todo =>
+                    <Todo key={todo.id}
+                        todo={todo}
+                        handleComplete={() => console.log('handleComplete')}
+                        handleDelete={() => console.log('handleDelete')}
+                    />
+                )}
+            </section>
+        );
+    };
+
+
+    function App() {
+        const [todos, setTodos] = useState(TODO_INIT_VALUE);
+        const input = useRef();
+
+        const addTodo = () => {
+            const newTodo = {
+                id: Math.random(),
+                title: input.current.value,
+                completed: false
+            };
+            const updatedTodos = [...todos, newTodo];
+            setTodos(updatedTodos)
+        };
+
+        return (
+            <main>
+                <h1>MobX Todo App</h1>
+                <div className="container">
+                    <div>
+                        <input className="input-area" type="text" placeholder="Enter todo" ref={input}/>
+                        <button onClick={addTodo}>
+                            add
+                        </button>
+                    </div>
+                    <TodoList todos={todos}/>
+                </div>
+            </main>
+        );
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>
