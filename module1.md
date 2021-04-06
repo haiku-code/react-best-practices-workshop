@@ -124,6 +124,7 @@ More examples:
 * [react-docs](https://reactjs.org/docs/higher-order-components.html)
 * react-redux [connect](https://react-redux.js.org/api/connect)
 * react [withRouter](https://reacttraining.com/react-router/core/api/withRouter)
+* [Wrapping Apollo GQL hooks](https://medium.com/@yuval.bar.levi/how-to-skyrocket-your-react-app-with-apollo-clientv3-ec384ba02bd6)
 
 ---
 ### [High Order Component](https://reactjs.org/docs/higher-order-components.html)
@@ -151,6 +152,8 @@ Pitfalls:
 * [Static Methods Must Be Copied Over](https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over)
 <!-- .element: class="fragment" -->
 * [Refs Aren’t Passed Through](https://reactjs.org/docs/higher-order-components.html#static-methods-must-be-copied-over)
+<!-- .element: class="fragment" -->
+* [Other solutions (like Hooks) might be simpler for some cases](https://reactrouter.com/web/api/Hooks)
 <!-- .element: class="fragment" -->
 
 </div>
